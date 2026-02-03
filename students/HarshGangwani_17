@@ -1,0 +1,43 @@
+// /3
+function once(fn) {
+  let executed = false;
+  return function() {
+    if (!executed) {
+      greet();
+      executed = true;
+    }
+  }
+
+// 2
+const textarea = document.getElementById('text');
+const charCountElement = document.getElementById('char-count');
+
+textarea.addEventListener('input', () => {
+  const charCount = textarea.value.length;
+  const countText = `${charCount} / 100`;
+
+  if (charCount > 100) {
+    charCountElement.style.color = 'red';
+  } else {
+    charCountElement.style.color = '';
+  }
+
+charCountElement.textContent = countText;
+};
+
+// 1
+let count = 0;
+let clickTimeoutId;
+
+document.getElementById('btn').addEventListener('click', function() {
+    if (!clickTimeoutId) {
+        setTimeout(() => {
+            count++;
+            document.getElementById('count').textContent = count.toString();
+            clickTimeoutId = null;
+        }, 1000);
+        clickTimeoutId = setTimeout(() => {
+            clickTimeoutId = null;
+        }, 999);
+    }
+})
